@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MyMedAlarm</string>
+    <string name="createUserProfileHeader">Create User Profile Screen Has been Loaded!</string>
+    <string name="BtnHome">Home</string>
+    <string name="TxtFldFirstName">* First Name</string>
+    <string name="TxtFldLastName">* Last Name</string>
+    <string name="TxtFldBloodGroup">* Blood Group</string>
+    <string name="TxtFldDOB">* Date of Birth</string>
+    <string name="TxtFldEmailAddress">* Email Address</string>
+    <string name="TxtFldMobileNumber">* Mobile Number</string>
+    <string name="BtnSubmitUserDetails">Submit Details</string>
 </resources>
