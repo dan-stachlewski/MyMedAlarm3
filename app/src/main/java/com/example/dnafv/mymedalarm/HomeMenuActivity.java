@@ -10,4 +10,11 @@ public class HomeMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_menu);
     }
+
+
+    // This Method Controls what the Buttons on the Activity Do - they will send the user to the
+    // corresponding Activity
+    public void onButtonClick(){
+
+    }
 }

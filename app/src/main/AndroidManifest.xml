@@ -9,13 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+       <!-- This is the Launcher Activity - the Activity that opens when the App is Loaded -->
         <activity android:name=".HomeMenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <!-- This is the code that defines which Activity is Launched -->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--
+            * Add our Additional Activities Here...
+            * Make sure they Associated Class File has been created and an OnCreate() has been created
+            * with setContentView(R.layout.<layout_name>);
+        -->
+        <activity android:name=".AddNewMedication"></activity>
+        <activity android:name=".ExpiredMedications"></activity>
+        <activity android:name=".MedicationInventory"></activity>
+        <activity android:name=".Notifications"></activity>
+        <activity android:name=".UserProfile"></activity>
+
+
     </application>
 
 </manifest>
