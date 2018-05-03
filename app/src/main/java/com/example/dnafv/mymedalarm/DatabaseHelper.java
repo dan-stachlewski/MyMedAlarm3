@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     //Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     //DATABASE NAME:
     public static final String DATABASE_NAME = "med_alarm.db";
@@ -30,8 +30,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME_EXPIRED_NOTIFICATIONS = "expired_notifications";
 
     //COMMON - Column Names
-//    private static final String KEY_ID = "id";
-    private static final String KEY_CREATED_AT = "created_at";
+    //private static final String KEY_ID = "id";
+    //private static final String KEY_CREATED_AT = "created_at";
 
     //TABLE COLUMN_NAMES:
     //USER_PROFILE Table - Column Names
@@ -42,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CONTACT_NUMBER = "contact_number";
     private static final String DOB = "date_of_birth";
     private static final String EMAIL_ADDRESS = "email_address";
-    private static final String PROFILE_IMAGE = "profile_image";
+    //private static final String PROFILE_IMAGE = "profile_image";
 
     //MEDICATIONS Table - Column Names
     private static final String MEDICATION_ID = "medication_id";
@@ -107,6 +107,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //USER_PROFILE Table - Create Statement
     private static final String CREATE_TABLE_USER_PROFILE = "CREATE TABLE "
             + TABLE_NAME_USER_PROFILE + "("
+            + USER_ID + " integer PRIMARY KEY AUTOINCREMENT,"
+            + FIRST_NAME +" text NOT NULL, "
+            + LAST_NAME + " text NOT NULL, "
+            + BLOOD_GROUP + " text NOT NULL, "
+            + CONTACT_NUMBER + " text NOT NULL, "
+            + DOB + " text NOT NULL, "
+            + EMAIL_ADDRESS + " text NOT NULL"
+            + ")";
+    /*
+    private static final String CREATE_TABLE_USER_PROFILE = "CREATE TABLE "
+            + TABLE_NAME_USER_PROFILE + "("
             + USER_ID + " integer NOT NULL PRIMARY KEY AUTOINCREMENT,"
             + FIRST_NAME +" text NOT NULL, "
             + LAST_NAME + " text NOT NULL, "
@@ -117,6 +128,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_CREATED_AT + " datetime NOT NULL,"
             + PROFILE_IMAGE + " blob NOT NULL"
             + ")";
+       */
 
     //MEDICATIONS Table - Create Statement
     private static final String CREATE_TABLE_MEDICATIONS = "CREATE TABLE "
@@ -199,8 +211,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             String blood_group,
             String contact_number,
             String date_of_birth,
-            String email_address,
-            String image_name) {
+            String email_address){
+            //String image_name
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(FIRST_NAME, first_name);
@@ -209,7 +221,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(CONTACT_NUMBER, contact_number);
         contentValues.put(DOB, date_of_birth);
         contentValues.put(EMAIL_ADDRESS, email_address);
-        contentValues.put(PROFILE_IMAGE, image_name);
+        //contentValues.put(PROFILE_IMAGE, image_name);
         long result = db.insert(TABLE_NAME_USER_PROFILE, null, contentValues);
         //If result = -1 then the values wern't inserted into the database.
         if(result == -1){
