@@ -53,10 +53,17 @@ public class HomeMenuActivity extends AppCompatActivity {
             startActivity(i);
         }
 
-        //Send User to Expired Medicaions
+        //Send User to Expired Medications Activity
         if(v.getId() == R.id.BtnExpiredMedications){
             Intent i = new Intent(HomeMenuActivity.this, ExpiredMedications.class);
                 startActivity(i);
+        }
+
+        //Send User to Create User Profile Activity
+        if(v.getId() == R.id.BtnCreateUserProfile){
+            Intent i = new Intent(HomeMenuActivity.this, CreateUserProfile.class);
+            startActivity(i);
+
         }
     }
 
