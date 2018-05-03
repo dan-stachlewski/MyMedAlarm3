@@ -1,6 +1,8 @@
 package com.example.dnafv.mymedalarm;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +25,8 @@ public class CreateUserProfile extends HomeMenuActivity {
              edit_date_of_birth,
              edit_email_address;
     //ImageView edit_profile_image;
-    Button BtnSubmitUserProfile;
+    Button button_submit_user_profile;
+    Button button_view_user_profile;
 
 
 
@@ -44,15 +47,18 @@ public class CreateUserProfile extends HomeMenuActivity {
         //edit_profile_image = (EditText)findViewById(R.id.ImgUserProfile);
         //edit_profile_image = (ImageView)findViewById(R.id.ImgUserProfile);
 
-        BtnSubmitUserProfile = (Button)findViewById(R.id.BtnSubmitUserProfileData);
+        button_submit_user_profile = (Button)findViewById(R.id.BtnSubmitUserProfileData);
+        button_view_user_profile = (Button)findViewById(R.id.BtnViewUserProfile);
 
         //Add the AddData Method to the onCreate Method for CreateUserProfile Activity so that when
         // the Submit Details Btn is clicked the data will be added to the Database.
         AddData();
+
+        viewAllUserData();
     }
 
     public void AddData(){
-        BtnSubmitUserProfile.setOnClickListener(
+        button_submit_user_profile.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -74,6 +80,44 @@ public class CreateUserProfile extends HomeMenuActivity {
         );
     }
 
+    public void viewAllUserData(){
+        button_view_user_profile.setOnClickListener(
+            new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    Cursor queryResult = myDB.getAllUserData();
+                    if(queryResult.getCount() == 0){
+                        //No Data in Table show error
+                        showMessage("Error", "No data found!");
+                        return;
+                    }
+
+                    //If there is a result = display Data
+                    StringBuffer buffer = new StringBuffer();
+                    while(queryResult.moveToNext()){
+                        buffer.append("USER_ID :" + queryResult.getString(0) + "\n");
+                        buffer.append("FIRST_NAME :" + queryResult.getString(1) + "\n");
+                        buffer.append("LAST_NAME :" + queryResult.getString(2) + "\n");
+                        buffer.append("BLOOD_GROUP :" + queryResult.getString(3) + "\n");
+                        buffer.append("CONTACT_NUMBER :" + queryResult.getString(4) + "\n");
+                        buffer.append("DOB :" + queryResult.getString(5) + "\n");
+                        buffer.append("EMAIL_ADDRESS :" + queryResult.getString(6) + "\n\n");
+                    }
+                    //Show All Data:
+                    showMessage("Data", buffer.toString());
+                    return;
+                }
+            }
+       );
+    }
+
+    public void showMessage(String title, String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
+    }
 
     /***
      * This Method Controls what the Buttons on the Activity Do - they will send the user to the
