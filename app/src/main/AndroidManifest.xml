@@ -29,6 +29,7 @@
         <activity android:name=".MedicationInventory"></activity>
         <activity android:name=".Notifications"></activity>
         <activity android:name=".UserProfile"></activity>
+        <activity android:name=".CreateUserProfile"></activity>
 
 
     </application>
